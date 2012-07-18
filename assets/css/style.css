@@ -1,0 +1,31 @@
+#header-row {
+    margin-bottom: 30px;
+}
+#alert-container {
+    position: absolute;
+    top: 75px;
+    width: 100%;
+}
+
+.container-steps {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+}
+.container-steps section {
+    position: absolute;
+    width: 960px;
+    top: 0;
+    left: 0;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.container-steps section.past {
+    left: -960px;
+}
+.container-steps section.future {
+    left: 960px;
+}

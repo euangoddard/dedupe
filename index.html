@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+    <head>
+        <title>dedupe</title>
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+    </head>
+    <body>
+        <div class="container" id="lead">
+            <div class="row" id="header-row">
+                <div class="span12 page-header">
+                    <h1>
+                        Dedupe 
+                        <small>Find duplicates in your CSV files</small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="container container-steps">
+            <section id="master-file-chooser" class="row future">
+                <div class="span8">
+                    <h2>1. <small>Choose master records</small></h2>
+                    <form class="well form-inline">
+                        <label>
+                            Choose a file which contains the master records
+                            <input type="file" id="master-file">
+                        </label>
+                    </form>
+                </div>
+                <div class="span4">
+                    <h3>Tips</h3>
+                </div>
+            </section>
+            <section id="new-file-chooser" class="row future">
+                <div class="span8">
+                    <h2>2. <small>Choose new records</small></h2>
+                    <form class="well form-inline">
+                        <label>
+                            Choose a file which contains the new records
+                            <input type="file" id="new-file" />
+                        </label>
+                    </form>
+                    <p>
+                        <button class="btn step-back"><i class="icon-chevron-left"></i> Go back</button>
+                        <button class="btn btn-warning start-over"><i class="icon-white icon-refresh"></i> Start again</button>
+                    </p>
+                </div>
+                <div class="span4">
+                    <h3>Tips</h3>
+            </section>
+            
+            <section id="header-chooser" class="row future">
+                <div class="span8">
+                    <h2>3. <small>Choose the fields for comparison</small></h2>
+                    <form class="well" action="#four" method="get">
+                        <button type="submit" disabled="disabled" class="btn btn-primary">De-dupe</button>
+                    </form>
+                    <p>
+                        <button class="btn step-back"><i class="icon-chevron-left"></i> Go back</button>
+                        <button class="btn btn-warning start-over"><i class="icon-white icon-refresh"></i> Start again</button>
+                    </p>
+                </div>
+                <div class="span4">
+                    <h3>Tips</h3>
+                </div>
+            </section>
+                
+            <section id="output-chooser" class="row future">
+                <div class="span8">
+                    <h2>4. <small>Download the output</small></h2>
+                    <div class="well">
+                        <ul></ul>
+                    </div>
+                    <p>
+                        <button class="btn step-back"><i class="icon-chevron-left"></i> Go back</button>
+                        <button class="btn btn-warning start-over"><i class="icon-white icon-refresh"></i> Start again</button>
+                    </p>
+                </div>
+                <div class="span4">
+                    <h3>Tips</h3>
+                </div>
+            </section>
+        </div>
+        <div class="container">
+            <div class="row">
+                <h2 class="pull-right">Step <small><span id="current-step">1</span> of 4</small></h2>
+            </div>
+        </div>
+        
+        <div id="alert-container">
+            <div class="container">
+                
+            </div>
+        </div>
+        
+        <script src="scripts/dependencies/jquery.js"></script>
+        <script src="scripts/dependencies/handlebars.js"></script>
+        <script src="scripts/dependencies/underscore.js"></script>
+        <script src="scripts/dependencies/backbone.js"></script>
+        <script src="scripts/dependencies/csv.js"></script>
+        <script src="scripts/dedupe.js"></script>
+        <script id="alert-template" type="text/x-handlebars-template">
+            <div class="alert alert-{{level}}">
+                <button class="close">&times;</button>
+                <strong>{{title}}</strong> {{body}}
+            </div>
+        </script>
+        <script id="common-headers-template" type="text/x-handlebars-template">
+            <ul>
+                {{#each headers}}
+                    <li>
+                        <label>
+                            <input type="checkbox" value="{{this}}">
+                            {{this}}
+                        </label>
+                    </li>
+                {{/each}}
+            </ul>
+        </script>
+        <script id="output-item-template" type="text/x-handlebars-template">
+            <li>
+                <a
+                    href="{{url}}"
+                    target="_blank"
+                    draggable="true"
+                    class="dragout"
+                    data-download-url="text/csv:{{label}}.csv:{{url}}"
+                >{{humanize_label label}}</a>
+            </li>
+        </script>
+    </body>
+</html>
